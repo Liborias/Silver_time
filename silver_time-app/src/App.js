@@ -19,6 +19,7 @@ function validateEmail(mail) {
 }
 
 function App() {
+  const [isEmailValid, setValidity] = useState(false);
   return (
     <div className="app">
       <header className="appHeader">
