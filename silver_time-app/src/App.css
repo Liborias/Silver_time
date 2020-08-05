@@ -29,3 +29,13 @@
 .innerLoginForm input {
   border-radius: 5px;
 }
+
+input.error {
+  border: 1px solid red;
+}
+
+.errorMessage {
+  max-width: 200px;
+  font-size: 12px;
+  min-height: 35px;
+}

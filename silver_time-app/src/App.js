@@ -2,24 +2,35 @@ import React, { useState } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 
-function validatePassword(pass) {
-  //Minimálně osm znaků, nejméně jedno velké písmeno, jedno malé písmeno, jedno číslo a jeden speciální znak:
-  const regex = new RegExp(
-    "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})"
-  );
-  if (!regex.test(pass)) {
-    console.log("neodpovídá");
-  }
-}
-
-function validateEmail(mail) {
-  if (!mail.includes("@")) {
-    console.log("neodpovídá");
-  }
-}
-
 function App() {
+  /*níže vidíme použití hooks, což je náhrada za state a setState.
+  Teď se nastavuje přímo uvnitř funkce, což dřív nešlo, šlo to jenom v classách.
+  První hodnota je název proměnné, která drží stav, druhá hodnota je funkce, která mění její stav */
   const [isEmailValid, setValidity] = useState(false);
+  const [isPasswordValid, setPasswordValidity] = useState(false);
+  const [isTouched, setTouched] = useState(false);
+
+  const validateEmail = (mail) => {
+    setValidity(true);
+    if (!mail.includes("@")) {
+      console.log("neodpovídá");
+      setValidity(false);
+    }
+  };
+
+  const validatePassword = (pass) => {
+    //Minimálně osm znaků, nejméně jedno velké písmeno, jedno malé písmeno, jedno číslo a jeden speciální znak:
+    const regex = new RegExp(
+      "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})"
+    );
+    if (!regex.test(pass)) {
+      console.log("neodpovídá");
+      setPasswordValidity(false);
+      return;
+    }
+    setPasswordValidity(true);
+  };
+
   return (
     <div className="app">
       <header className="appHeader">
@@ -31,18 +42,29 @@ function App() {
               <input
                 type="email"
                 name="email"
-                onBlur={(e) => validateEmail(e.target.value)}
+                className={!isEmailValid && isTouched ? "error" : ""}
+                onFocus={() => setTouched(true)}
+                onChange={(e) => validateEmail(e.target.value)}
               />
             </label>
             <label>
               Heslo:&nbsp;
               <input
-                type="text"
-                name="email"
-                onBlur={(e) => validatePassword(e.target.value)}
+                type="password"
+                name="password"
+                className={!isPasswordValid && isTouched ? "error" : ""}
+                onFocus={() => setTouched(true)}
+                onChange={(e) => validatePassword(e.target.value)}
               />
             </label>
-            <button type="submit">Potvrdit</button>
+            <p className="errorMessage">
+              {!isPasswordValid && isTouched
+                ? "Heslo má mít malý a velký znak, hieroglif a číslo."
+                : ""}
+            </p>
+            <button type="submit" disabled={!isEmailValid || !isPasswordValid}>
+              Potvrdit
+            </button>
           </form>
         </div>
       </header>
