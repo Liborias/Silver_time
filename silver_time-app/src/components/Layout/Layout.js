@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import "./Layout.css";
+import CarFeatures from "../Carfeatures/CarFeatures";
 import Homepage from "../Homepage/Homepage";
 
 const Layout = () => (
@@ -13,6 +14,9 @@ const Layout = () => (
         <li>
           <Link to="/contacts">Kontakt</Link>
         </li>
+        <li>
+          <Link to="/CarFeatures">Car Features</Link>
+        </li>
       </ul>
     </nav>
     <div className="content">
@@ -21,6 +25,11 @@ const Layout = () => (
       <Switch>
         <Route path="/contacts">
           <p>Kontakt!</p>
+        </Route>
+        <Route path="/CarFeatures">
+          <div>
+            <CarFeatures />
+          </div>
         </Route>
         <Route path="/">
           <Homepage />
