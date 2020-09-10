@@ -1,0 +1,18 @@
+
+.navPanel {
+    width: 400px;
+    padding: 5px;
+    display: flex;
+    justify-content: space-around;
+
+};
+
+button {
+    border-radius: 5px
+};
+
+.page {
+    text-align: right;
+    max-width: 10%;
+    border-radius: 20px
+};
