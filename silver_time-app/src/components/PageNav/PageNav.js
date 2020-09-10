@@ -21,8 +21,7 @@ return(
     <button>|◄</button>
     <button>◄</button>
     <label>
-    <input type="text" pattern="[1-9]*"
-      />
+    <input ref="page" type="number" min="1" max="999" defaultValue={1}/>
                             &nbsp;Page
     </label>
     <button>►</button>
