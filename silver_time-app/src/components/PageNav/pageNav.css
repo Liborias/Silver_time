@@ -1,6 +1,6 @@
 
 .navPanel {
-    width: 400px;
+    width: 350px;
     padding: 5px;
     display: flex;
     justify-content: space-around;
@@ -15,3 +15,4 @@ input {
     text-align: right;
     border-radius: 20px
 };
+

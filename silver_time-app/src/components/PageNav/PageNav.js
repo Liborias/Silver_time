@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from 'react';
 import "./pageNav.css"
 
 
@@ -14,22 +14,40 @@ page
 lastPage
 */
 
-const PageNav = () => {
-    console.log("aye aye");
-return(
+function PageNav() {
+    
+    const page = 4;
+    const lastPage = 10;
+    const [currentPage, setCurrentPage] = useState(page);
+
+
+    return(
+        
     <div className="navPanel">
-    <button>|◄</button>
-    <button>◄</button>
+        <button onClick={() => setCurrentPage(1)}>
+        |◄
+        </button>
+
+        <button onClick={() => setCurrentPage(currentPage>1 ? currentPage - 1 : 1)}>
+        ◄
+        </button>
+
     <label>
-    <input ref="page" type="number" min="1" max="999" defaultValue={1}/>
-                            &nbsp;Page
+    <input type="number"  min="1" max={lastPage} onInput={(e) => setCurrentPage(e.target.value>1 && e.target.value<=lastPage ? e.target.value : page)}/>
+                            &nbsp;strana {currentPage} z {lastPage}
     </label>
-    <button>►</button>
-    <button>►|</button>
+
+        <button onClick={() => setCurrentPage(currentPage<lastPage ? currentPage + 1 : lastPage)}>
+        ►
+        </button>
+
+        <button onClick={() => setCurrentPage(lastPage)}>
+        ►|
+        </button>
+    
     </div>
 );
-};
-
+    };
 
 
 
