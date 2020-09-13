@@ -33,7 +33,7 @@ function PageNav() {
         </button>
 
     <label>
-    <input type="number"  min="1" max={lastPage} onInput={(e) => setCurrentPage(e.target.value>1 && e.target.value<=lastPage ? e.target.value : page)}/>
+    <input type="number"  min="1" max={lastPage} onInput={(e) => setCurrentPage(e.target.value>1 && e.target.value<=lastPage ? e.target.value : currentPage)}/>
                             &nbsp;strana {currentPage} z {lastPage}
     </label>
 
