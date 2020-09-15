@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import "./pageNav.css"
+import Pages from "../PageNav/Pages"
 
 
 /*
@@ -16,8 +17,8 @@ lastPage
 
 function PageNav() {
     
-    const page = 4;
-    const lastPage = 10;
+    const page = Pages.page;
+    const lastPage = Pages.lastPage;
     const [currentPage, setCurrentPage] = useState(page);
 
 
@@ -33,7 +34,7 @@ function PageNav() {
         </button>
 
     <label>
-    <input type="number"  min="1" max={lastPage} onInput={(e) => setCurrentPage(e.target.value>1 && e.target.value<=lastPage ? e.target.value : currentPage)}/>
+    <input type="number"  min="1" max={lastPage}  onChange={(e) => (e.target.value>=1 && e.target.value<=lastPage ? setCurrentPage(e.target.value) : currentPage)}/>
                             &nbsp;strana {currentPage} z {lastPage}
     </label>
 
