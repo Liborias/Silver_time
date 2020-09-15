@@ -21,6 +21,12 @@ function PageNav() {
     const lastPage = Pages.lastPage;
     const [currentPage, setCurrentPage] = useState(page);
 
+     function maxLengthCheck(object) {
+        if (object.target.value.length > object.target.maxLength) {
+         object.target.value = object.target.value.slice(0, object.target.maxLength)
+          }
+        };
+
 
     return(
         
@@ -34,7 +40,15 @@ function PageNav() {
         </button>
 
     <label>
-    <input type="number"  min="1" max={lastPage}  onChange={(e) => (e.target.value>=1 && e.target.value<=lastPage ? setCurrentPage(e.target.value) : currentPage)}/>
+    <input 
+    type="number" 
+    min="1" 
+    max={lastPage} 
+    maxLength= "4"
+    onInput={maxLengthCheck}
+    onChange={(e) => (e.target.value>=1 && e.target.value<=lastPage ? setCurrentPage(e.target.value) : e.target.value<1 ? setCurrentPage(1) : setCurrentPage(lastPage))}
+  
+    />
                             &nbsp;strana {currentPage} z {lastPage}
     </label>
 
