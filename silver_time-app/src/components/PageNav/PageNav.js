@@ -20,6 +20,8 @@ const PageNav = (props) => {
     const lastPage = props.lastPage;
     const [currentPage, setCurrentPage] = useState(page);
     const maxLength = lastPage.length;
+    const [startValue, setStartValue] = useState(0);
+
 
     function maxLengthCheck(object) {
         if (object.target.value.length > object.target.maxLength) {
@@ -44,8 +46,8 @@ const PageNav = (props) => {
                     max={lastPage}
                     maxLength="2"
                     onInput={maxLengthCheck}
-                    onChange={(e) => (e.target.value >= 1 && e.target.value <= lastPage ? setCurrentPage(e.target.value) : e.target.value < 1 ? setCurrentPage(1) : setCurrentPage(lastPage))}
-
+                    onChange={(e) => (e.target.value >= 1 && e.target.value <= lastPage ? setCurrentPage(e.target.value) : e.target.value < 1 ? setCurrentPage(1) && setStartValue(0) : setCurrentPage(lastPage) && setStartValue(1))}
+                //value={currentPage <= lastPage && startValue != 0 ? currentPage : startValue}
                 />
                             &nbsp;strana {currentPage} z {lastPage}
             </label>
