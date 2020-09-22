@@ -6,9 +6,10 @@ import Homepage from "../Homepage/Homepage";
 import PageNav from "../PageNav/PageNav";
 
 const Layout = () => (
+
   <div>
-     <nav>
-       <ul>
+    <nav>
+      <ul>
         <li>
           <Link to="/">Home</Link>
         </li>
@@ -20,7 +21,7 @@ const Layout = () => (
         </li>
       </ul>
     </nav>
-    <div className="pageNav"><PageNav /></div>
+    <div className="pageNav"><PageNav page={1} lastPage={53} /></div>
     <div className="content">
       {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
@@ -38,7 +39,8 @@ const Layout = () => (
         </Route>
       </Switch>
     </div>
-  </div>
+
+  </div >
 );
 
 export default Layout;
