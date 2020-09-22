@@ -19,10 +19,9 @@ const PageNav = (props) => {
     const page = props.page;
     const lastPage = props.lastPage;
     const [currentPage, setCurrentPage] = useState(page);
-    const maxLength = lastPage.length;
-    const [startValue, setStartValue] = useState(0);
+    const maxLength = String(lastPage).length;
 
-
+    
     function maxLengthCheck(object) {
         if (object.target.value.length > object.target.maxLength) {
             object.target.value = object.target.value.slice(0, object.target.maxLength)
@@ -44,10 +43,9 @@ const PageNav = (props) => {
                     type="number"
                     min="0"
                     max={lastPage}
-                    maxLength="2"
+                    maxLength={maxLength}
                     onInput={maxLengthCheck}
-                    onChange={(e) => (e.target.value >= 1 && e.target.value <= lastPage ? setCurrentPage(e.target.value) : e.target.value < 1 ? setCurrentPage(1) && setStartValue(0) : setCurrentPage(lastPage) && setStartValue(1))}
-                //value={currentPage <= lastPage && startValue != 0 ? currentPage : startValue}
+                    onChange={(e) => (e.target.value >= 1 && e.target.value <= lastPage ? setCurrentPage(e.target.value) : e.target.value < 1 ? setCurrentPage(1) : setCurrentPage(lastPage))} 
                 />
                             &nbsp;strana {currentPage} z {lastPage}
             </label>
